@@ -4,7 +4,7 @@ import { parseArrayToText, parseCode, parseExpl } from "../parsers/parser";
 
 
 
-export async function createExplainationOpenAi(userInput, API_KEY = process.env.OPENAI_API_KEY) {
+export async function createExplainationOpenAi(userInput: string, API_KEY: string) {
     const openai = new OpenAI({
         apiKey: API_KEY
     });
@@ -15,7 +15,6 @@ export async function createExplainationOpenAi(userInput, API_KEY = process.env.
 
 
       let output = parseExpl(completion.choices[0].message.content)
-      console.log(output)
       return output;
 }
   
