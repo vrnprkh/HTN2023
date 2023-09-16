@@ -3,10 +3,10 @@ import { PanelGroup } from 'react-resizable-panels';
 //import CodeBlock from "../../Blocks/CodeBlock/CodeBlock";
 import DocBlock from "../../Blocks/DocBlock/DocBlock";
 import ResizeHandle from '../../Atoms/ResizeHandle/ResizeHandle';
+import { useState } from 'react';
+import CodeBlock from '../../Blocks/CodeBlock/CodeBlock';
 
 const DocurCodeLayout: React.FC = () => {
-<<<<<<< HEAD
-  const [isResizing, setIsResizing] = useState<boolean>(false);
   const [showPrompt, setShowPrompt] = useState(true);
   const [inputCode, setInputCode] = useState("");
   const [apiKey, setApiKey] = useState("");
@@ -80,20 +80,11 @@ const DocurCodeLayout: React.FC = () => {
       {!showPrompt && (
         <PanelGroup direction="horizontal" className="docUrCodeLayout">
           <DocBlock />
-          <ResizeHandle onResize={setIsResizing} />
-
-          <DocBlock />
+          <ResizeHandle />
+          <CodeBlock />
         </PanelGroup>
       )}
     </div>
-=======
-  return (
-    <PanelGroup direction="horizontal" className="docUrCodeLayout" style={{ overflow: 'auto' }}>
-      <DocBlock />
-      <ResizeHandle />
-      <CodeBlock />
-    </PanelGroup>
->>>>>>> code-block
   );
 };
 
