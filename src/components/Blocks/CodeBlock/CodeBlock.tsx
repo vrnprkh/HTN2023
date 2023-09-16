@@ -11,7 +11,7 @@ export type CodeBlockProps = {
 const CodeBlock: React.FC<CodeBlockProps> = (props: CodeBlockProps) => {
   const { text, selectedLines } = props;
   return (
-    <Panel defaultSize={40} minSize={10} style={{ overflow: 'auto' }}>
+    <Panel defaultSize={50} minSize={10} style={{ overflow: 'auto' }}>
       <InternalCodeBlock
         text={text ?? DEFAULT_CODE}
         highlight={selectedLines}

@@ -1,19 +1,20 @@
 import React from "react";
 import { Panel } from "react-resizable-panels";
 import "./DocBlock.css";
+import DocItem, { DocItemProps } from "../../Organisms/DocItem/DocItem";
 
-const textArray = [
-  "Lorem ipsum dolor sit amet. Qui voluptatibus aliquam non sint illum ut obcaecati mollitia sed harum quam. Non galisum voluptas est blanditiis minima sit dolore quasi vel assumenda nesciunt! Ut quod optio sit voluptatem dolores et dolorum rerum? Eum temporibus perspiciatis aut animi quam hic quam consequuntur eum velit vitae ea magni iusto rem culpa necessitatibus.",
-  "Et repellat ipsa vel dicta neque rem officia rerum ad eligendi velit ut fugit corporis a odio pariatur. Ad natus totam 33 labore asperiores aut voluptatem corrupti ut explicabo facere. Aut obcaecati corrupti et nesciunt facere ab labore voluptatem in officia molestias.",
-  "In assumenda magnam id neque omnis ad delectus atque sit eligendi internos eos eaque omnis. Sed obcaecati accusantium sit quos dolorem eum sint velit a dignissimos rerum et incidunt veritatis.",
-];
+export type DocBlockProps = {
+  docItems?: DocItemProps[];
+}
 
-const DocBlock: React.FC = () => {
+const DocBlock: React.FC<DocBlockProps> = (props: DocBlockProps) => {
+  const { docItems } = props;
+  const children = docItems?.map((docItem) => {
+    return <DocItem {...docItem} />
+  })
   return (
-    <Panel defaultSize={60} minSize={10} className="docBlock">
-      {textArray.map((text, index) => (
-        <p key={index}>{text}</p>
-      ))}
+    <Panel defaultSize={50} minSize={10} className="docBlock" style={{ overflow: 'auto' }}>
+      {children}
     </Panel>
   );
 };

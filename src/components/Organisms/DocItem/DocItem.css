@@ -1,0 +1,24 @@
+/* Text Paragraphs */
+.doc {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.5;
+  width: 100%;
+  padding: 10px; /* Add padding to create distinction */
+  border: 1px solid #5D4561; /* Add a border for distinction */
+  background-color: #474456; /* Add a background color */
+  border-radius: 5px; /* Add rounded corners */
+  transition: background-color 0.3s ease-in-out;
+  color: #E9EFFF;
+  text-align: left;
+}
+
+/* Hover Effect */
+.doc:hover {
+  background-color: #6A6077;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.doc:focus {
+  background-color: #927C97;
+}

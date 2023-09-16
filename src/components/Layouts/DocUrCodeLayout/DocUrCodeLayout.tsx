@@ -1,10 +1,11 @@
 import './DocUrCodeLayout.css';
 import { PanelGroup } from 'react-resizable-panels';
-//import CodeBlock from "../../Blocks/CodeBlock/CodeBlock";
 import DocBlock from "../../Blocks/DocBlock/DocBlock";
 import ResizeHandle from '../../Atoms/ResizeHandle/ResizeHandle';
 import { useState } from 'react';
 import CodeBlock from '../../Blocks/CodeBlock/CodeBlock';
+import { DocItemProps } from '../../Organisms/DocItem/DocItem';
+import { DEFAULT_DOCS } from './Constants';
 
 const DocurCodeLayout: React.FC = () => {
   const [showPrompt, setShowPrompt] = useState(true);
@@ -35,6 +36,16 @@ const DocurCodeLayout: React.FC = () => {
     // Perform any necessary actions with input code and API key.
     // For example, make API requests.
   };
+
+  const [selectedLines, setSelectedLines] = useState<string>();
+
+  const docItems: DocItemProps[] = DEFAULT_DOCS.map((docInfo) => {
+    return {
+      onClick: () => setSelectedLines(`${docInfo.start}-${docInfo.end}`),
+      onExit: () => setSelectedLines(undefined),
+      docInfo,
+    };
+  });
 
   return (
     <div className="App">
@@ -79,9 +90,9 @@ const DocurCodeLayout: React.FC = () => {
 
       {!showPrompt && (
         <PanelGroup direction="horizontal" className="docUrCodeLayout">
-          <DocBlock />
+          <DocBlock docItems={docItems}/>
           <ResizeHandle />
-          <CodeBlock />
+          <CodeBlock selectedLines={selectedLines}/>
         </PanelGroup>
       )}
     </div>
