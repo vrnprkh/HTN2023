@@ -12,7 +12,7 @@ export async function createExplainationOpenAi(userInput: string, API_KEY: strin
     });
     const completion = await openai.chat.completions.create({
         messages: [{ role: "system", content: mainPrompt }, {role: "user", content: parseArrayToText(parseCode(userInput))}],
-        model: "gpt-3.5-turbo",
+        model: "gpt-3.5-turbo-16k",
       });
 
 

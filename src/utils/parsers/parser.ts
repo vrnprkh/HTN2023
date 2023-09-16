@@ -10,8 +10,11 @@ export type Line = {
 }
 
 export function parseExpl(text: any) {
-    let regex = /(?=\([0-9]+-[0-9]+\))/g;
-    return text.split(regex);
+    console.log(text)
+    let regex = /(?=\([0-9]+-[0-9]+\))|(?=\([0-9]+\))/g;
+    let returnValue = text.split(regex)
+    console.log(returnValue)
+    return returnValue
 }
 
 
@@ -26,6 +29,7 @@ export function parseCode(input: string) {
     }
     return newArr
 }
+
 export function parseArrayToText(arrayCode: Array<Line>) {
     let output = '';
     for(let i = 0; i<arrayCode.length; i++){
@@ -36,6 +40,7 @@ export function parseArrayToText(arrayCode: Array<Line>) {
 
 export function getDocFromOutput(splitOutputData: Array<string>) {
     const regex = /[0-9]+-[0-9]+/i; 
+    const regex2 = /([0-9]+)/
     const newArr: Doc[] = [] 
     splitOutputData.forEach(element => {
         const rangeString = element.match(regex)
@@ -47,12 +52,25 @@ export function getDocFromOutput(splitOutputData: Array<string>) {
                 body: element
             })
         }
+        else {
+            let newNumber = element.match(regex2)
+            if (newNumber != null) {
+                let num = parseInt(newNumber[0])
+                newArr.push({
+                    start: num,
+                    end: num,
+                    body: element
+                })
+            }
+            else {
+                newArr.push({
+                    start: 0,
+                    end: 0,
+                    body: element,
+                })
+            }
+        }
 
     });
     return newArr
 }
-
-// a chunk consists of two numbers [n,m], for start and end inclusive, and non chunked code will
-
-// creates in between chunks for codes that dont have lines
-
