@@ -1,3 +1,23 @@
+body,html {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
 .App {
   height: 100vh;
+  background-color: rgb(40, 42, 54);
+  color: #E9EFFF;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #555765;
+}
+::-webkit-scrollbar-thumb {
+  background: #C2C4D3;
+  border-radius: 5px;
 }

@@ -1,5 +1,5 @@
 .resizeHandle {
-  background-color: gray;
+  background-color: #474456;
   width: 20px;
   display: flex;
   flex-direction: column;
