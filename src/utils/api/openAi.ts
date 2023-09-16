@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { parseArrayToText, parseCode, parseExpl } from "../parsers/parser";
+import { getDocFromOutput, parseArrayToText, parseCode, parseExpl } from "../parsers/parser";
 
 
 
@@ -14,7 +14,7 @@ export async function createExplainationOpenAi(userInput: string, API_KEY: strin
       });
 
 
-      let output = parseExpl(completion.choices[0].message.content)
+      let output = getDocFromOutput(parseExpl(completion.choices[0].message.content))
       return output;
 }
   
