@@ -18,3 +18,14 @@ export function parseArrayToText(arrayCode) {
     }
     return output;
   }
+
+// a chunk consists of two numbers [n,m], for start and end inclusive, and non chunked code will
+
+// creates in between chunks for codes that dont have lines
+function fillChunks(chunks, totalLines) {
+    
+}
+
+export function splitCodeByLines(chunks) {
+
+}
