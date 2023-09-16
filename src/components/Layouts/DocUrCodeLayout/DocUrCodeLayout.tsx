@@ -1,18 +1,18 @@
 import './DocUrCodeLayout.css';
+import { PanelGroup } from 'react-resizable-panels';
 import CodeBlock from "../../Blocks/CodeBlock/CodeBlock";
 import DocBlock from "../../Blocks/DocBlock/DocBlock";
+import ResizeHandle from '../../Atoms/ResizeHandle/ResizeHandle';
+import { useState } from 'react';
 
 const DocurCodeLayout: React.FC = () => {
+  const [isResizing, setIsResizing] = useState<boolean>(false);
   return (
-    <div className="docUrCodeLayout">
+    <PanelGroup direction="horizontal" className="docUrCodeLayout">
       <DocBlock />
-      {/* <CodeBlock /> */}
-      <iframe
-        src="https://bchharaw.github.io/HackTheNorth2023/lab/index.html?kernel=python&toolbar=1"
-        width="100%"
-        height="100%"
-      ></iframe>
-    </div>
+      <ResizeHandle onResize={setIsResizing}/>
+      <CodeBlock disabledFrame={isResizing}/>
+    </PanelGroup>
   );
 };
 
