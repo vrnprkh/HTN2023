@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { Panel } from "react-resizable-panels";
 import "./DocBlock.css";
