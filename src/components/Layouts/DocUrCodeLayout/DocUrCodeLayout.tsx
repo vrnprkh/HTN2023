@@ -21,18 +21,13 @@ const DocurCodeLayout: React.FC = () => {
     if (!language || !inputCode || !apiKey) {
       return;
     }
-    setShowForm(false);
-  }
-
-  useEffect(() => {
     const getData = async () => {
-      if (inputCode && apiKey) {
-        const data = await createExplainationOpenAi(inputCode, apiKey);
-        setDocs(data);
-      }
+      const data = await createExplainationOpenAi(inputCode, apiKey);
+      setDocs(data);
     };
     getData();
-  }, [inputCode, apiKey]);
+    setShowForm(false);
+  }
 
   const docItems: DocItemProps[] = (docs ?? DEFAULT_DOCS).map((docInfo) => {
     return {
