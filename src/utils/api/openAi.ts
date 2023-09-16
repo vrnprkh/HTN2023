@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { getDocFromOutput, parseArrayToText, parseCode, parseExpl } from "../parsers/parser";
+import { mainPrompt } from "../prompts/prompt";
 
 
 

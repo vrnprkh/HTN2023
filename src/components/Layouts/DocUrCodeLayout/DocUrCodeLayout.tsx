@@ -53,7 +53,7 @@ const DocurCodeLayout: React.FC = () => {
       <PanelGroup direction="horizontal" className="docUrCodeLayout">
         <DocBlock docItems={docItems}/>
         <ResizeHandle />
-        <CodeBlock selectedLines={selectedLines}/>
+        <CodeBlock text={inputCode} selectedLines={selectedLines}/>
       </PanelGroup>
       }
     </div>
