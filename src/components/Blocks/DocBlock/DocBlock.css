@@ -1,3 +1,23 @@
+/* DocBlock Container */
 .docBlock {
-  height: 100%;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+/* Text Paragraphs */
+.docBlock p {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 10px; /* Add padding to create distinction */
+  border: 1px solid #ddd; /* Add a border for distinction */
+  background-color: #fff; /* Add a background color */
+  border-radius: 5px; /* Add rounded corners */
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.docBlock p:hover {
+  background-color: #e6e6e6;
+  transition: background-color 0.3s ease-in-out;
 }
