@@ -1,6 +1,6 @@
 import './DocUrCodeLayout.css';
 import { PanelGroup } from 'react-resizable-panels';
-import CodeBlock from "../../Blocks/CodeBlock/CodeBlock";
+//import CodeBlock from "../../Blocks/CodeBlock/CodeBlock";
 import DocBlock from "../../Blocks/DocBlock/DocBlock";
 import ResizeHandle from '../../Atoms/ResizeHandle/ResizeHandle';
 import { useState } from 'react';
@@ -10,8 +10,9 @@ const DocurCodeLayout: React.FC = () => {
   return (
     <PanelGroup direction="horizontal" className="docUrCodeLayout">
       <DocBlock />
-      <ResizeHandle onResize={setIsResizing}/>
-      <CodeBlock disabledFrame={isResizing}/>
+      <ResizeHandle onResize={setIsResizing} />
+
+      <DocBlock />
     </PanelGroup>
   );
 };
