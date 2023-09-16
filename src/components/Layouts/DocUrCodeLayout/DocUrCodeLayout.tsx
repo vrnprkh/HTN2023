@@ -2,13 +2,13 @@ import './DocUrCodeLayout.css';
 import { PanelGroup } from 'react-resizable-panels';
 import DocBlock from "../../Blocks/DocBlock/DocBlock";
 import ResizeHandle from '../../Atoms/ResizeHandle/ResizeHandle';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CodeBlock from '../../Blocks/CodeBlock/CodeBlock';
 import { DocItemProps } from '../../Organisms/DocItem/DocItem';
 import { DEFAULT_DOCS } from './Constants';
 import FormBlock from '../../Blocks/FormBlock/FormBlock';
 import { createExplainationOpenAi } from '../../../utils/api/openAi';
-import { useAsync } from 'react-async';
+import { Doc } from '../../../utils/parsers/parser';
 
 const DocurCodeLayout: React.FC = () => {
   const [selectedLines, setSelectedLines] = useState<string>();
@@ -16,6 +16,7 @@ const DocurCodeLayout: React.FC = () => {
   const [inputCode, setInputCode] = useState<string>();
   const [language, setLanguage] = useState<string>();
   const [showForm, setShowForm] = useState<boolean>(true);
+  const [docs, setDocs] = useState<Doc[]>();
   const onSubmitForm = () => {
     if (!language || !inputCode || !apiKey) {
       return;
@@ -23,11 +24,15 @@ const DocurCodeLayout: React.FC = () => {
     setShowForm(false);
   }
 
-  const { data: docs } = useAsync({ promiseFn: async () => {
-    if (inputCode && apiKey) {
-      return createExplainationOpenAi(inputCode, apiKey);
-    }
-  }})
+  useEffect(() => {
+    const getData = async () => {
+      if (inputCode && apiKey) {
+        const data = await createExplainationOpenAi(inputCode, apiKey);
+        setDocs(data);
+      }
+    };
+    getData();
+  }, [inputCode, apiKey]);
 
   const docItems: DocItemProps[] = (docs ?? DEFAULT_DOCS).map((docInfo) => {
     return {
