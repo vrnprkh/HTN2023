@@ -14,7 +14,7 @@ export function parseCode(input) {
 export function parseArrayToText(arrayCode) {
     let output = '';
     for(let i = 0; i<arrayCode.length; i++){
-        output += String(arrayCode[i][0]) +' '+ String(arrayCode[i][1]) +             '\n';
+        output += String(arrayCode[i][0]) +' '+ String(arrayCode[i][1]) + '\n';
     }
     return output;
   }
@@ -22,10 +22,4 @@ export function parseArrayToText(arrayCode) {
 // a chunk consists of two numbers [n,m], for start and end inclusive, and non chunked code will
 
 // creates in between chunks for codes that dont have lines
-function fillChunks(chunks, totalLines) {
-    
-}
 
-export function splitCodeByLines(chunks) {
-
-}
