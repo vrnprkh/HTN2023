@@ -8,6 +8,7 @@ import CodeBlock from "../../Blocks/CodeBlock/CodeBlock";
 import { DocItemProps } from "../../Organisms/DocItem/DocItem";
 import { createExplainationOpenAi } from "../../../utils/api/openAi";
 import { Doc } from "../../../utils/parsers/parser";
+import Navbar from "../../Blocks/Navbar/Navbar";
 
 const DocurCodeLayout: React.FC = () => {
   const [selectedLines, setSelectedLines] = useState<string>();
@@ -38,22 +39,28 @@ const DocurCodeLayout: React.FC = () => {
       docInfo,
     };
   });
+  
 
   return (
+    
     <div className="App">
+      <Navbar></Navbar>
       {showForm ? (
         <FormBlock
           setInputCode={setInputCode}
           setExplainationLevel={setExplanationLevel} // Pass the new prop
           onSubmit={onSubmitForm}
         />
+        
       ) : (
         <PanelGroup direction="horizontal" className="docUrCodeLayout">
           <DocBlock docItems={docItems} />
           <ResizeHandle />
           <CodeBlock text={inputCode} selectedLines={selectedLines} />
         </PanelGroup>
+        
       )}
+      
     </div>
   );
 };
