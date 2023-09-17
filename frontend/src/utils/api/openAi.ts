@@ -1,23 +1,30 @@
-import OpenAI from "openai";
+import { highPrompt, lowPrompt, mainPrompt, mediumPrompt } from "../prompts/prompt";
 import { getDocFromOutput, parseArrayToText, parseCode, parseExpl } from "../parsers/parser";
-import { mainPrompt } from "../prompts/prompt";
 import axios from "axios";
 
-export async function createExplainationOpenAi(userInput: string, API_KEY: string, prompt: string = mainPrompt) {
-    let completion: OpenAI.Chat.Completions.ChatCompletion;
-    return axios.post(
-      "http://localhost:4000/openai",
-      {
-        prompt: mainPrompt,
-        code: parseArrayToText(parseCode(userInput)),
+export async function createExplainationOpenAi(userInput: string, promptType: string = mainPrompt) {
+  let prompt = mainPrompt;
+  if (promptType === "high") {
+      prompt = highPrompt;
+  }
+  else if (prompt === "medium") {
+      prompt = mediumPrompt;
+  }
+  else if (prompt === "low") {
+      prompt = lowPrompt
+  }
+  return axios.post(
+    "http://localhost:4000/openai",
+    {
+      prompt,
+      code: parseArrayToText(parseCode(userInput)),
+    },
+    {
+      headers: {
+        Authorization: 'Zain',
       },
-      {
-        headers: {
-          Authorization: 'Zain',
-        },
-      },
-    ).then((response) => {
-      completion = response.data;
-      return getDocFromOutput(parseExpl(completion.choices[0].message.content));
-    });
-}
+    },
+  ).then((response) => {
+    return getDocFromOutput(parseExpl(response.data.choices[0].message.content));
+  });
+};
