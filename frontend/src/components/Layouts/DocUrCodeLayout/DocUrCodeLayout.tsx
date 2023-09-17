@@ -1,34 +1,37 @@
-import './DocUrCodeLayout.css';
-import { PanelGroup } from 'react-resizable-panels';
+import React, { useEffect, useState } from "react";
+import { PanelGroup } from "react-resizable-panels";
 import DocBlock from "../../Blocks/DocBlock/DocBlock";
-import ResizeHandle from '../../Atoms/ResizeHandle/ResizeHandle';
-import { useEffect, useState } from 'react';
-import CodeBlock from '../../Blocks/CodeBlock/CodeBlock';
-import { DocItemProps } from '../../Organisms/DocItem/DocItem';
-import { DEFAULT_DOCS } from './Constants';
-import FormBlock from '../../Blocks/FormBlock/FormBlock';
-import { createExplainationOpenAi } from '../../../utils/api/openAi';
-import { Doc } from '../../../utils/parsers/parser';
+import ResizeHandle from "../../Atoms/ResizeHandle/ResizeHandle";
+import FormBlock from "../../Blocks/FormBlock/FormBlock";
+import { DEFAULT_DOCS } from "./Constants";
+import CodeBlock from "../../Blocks/CodeBlock/CodeBlock";
+import { DocItemProps } from "../../Organisms/DocItem/DocItem";
+import { createExplainationOpenAi } from "../../../utils/api/openAi";
+import { Doc } from "../../../utils/parsers/parser";
 
 const DocurCodeLayout: React.FC = () => {
   const [selectedLines, setSelectedLines] = useState<string>();
   const [apiKey, setApiKey] = useState<string>();
   const [inputCode, setInputCode] = useState<string>();
-  // const [language, setLanguage] = useState<string>();
   const [showForm, setShowForm] = useState<boolean>(true);
   const [docs, setDocs] = useState<Doc[]>();
+  const [explanationLevel, setExplanationLevel] = useState<string>("low"); // State for explanation level
+
   const onSubmitForm = () => {
-    if (!inputCode || !apiKey) {
-      // add !language || for syntax highlighting
+    if (!inputCode || !apiKey || !explanationLevel) {
       return;
     }
     const getData = async () => {
-      const data = await createExplainationOpenAi(inputCode, apiKey);
+      const data = await createExplainationOpenAi(
+        inputCode,
+        apiKey,
+        explanationLevel // Pass explanation level to the function
+      );
       setDocs(data);
     };
     getData();
     setShowForm(false);
-  }
+  };
 
   const docItems: DocItemProps[] = (docs ?? DEFAULT_DOCS).map((docInfo) => {
     return {
@@ -40,21 +43,22 @@ const DocurCodeLayout: React.FC = () => {
 
   return (
     <div className="App">
-      {showForm ? <FormBlock
-        setInputCode={setInputCode}
-        setApiKey={setApiKey}
-        // setSelectedLanguage={setLanguage}
-        onSubmit={onSubmitForm}
-      /> :
-      <PanelGroup direction="horizontal" className="docUrCodeLayout">
-        <DocBlock docItems={docItems}/>
-        <ResizeHandle />
-        <CodeBlock text={inputCode} selectedLines={selectedLines}/>
-      </PanelGroup>
-      }
+      {showForm ? (
+        <FormBlock
+          setInputCode={setInputCode}
+          setApiKey={setApiKey}
+          setExplainationLevel={setExplanationLevel} // Pass the new prop
+          onSubmit={onSubmitForm}
+        />
+      ) : (
+        <PanelGroup direction="horizontal" className="docUrCodeLayout">
+          <DocBlock docItems={docItems} />
+          <ResizeHandle />
+          <CodeBlock text={inputCode} selectedLines={selectedLines} />
+        </PanelGroup>
+      )}
     </div>
   );
 };
-
 
 export default DocurCodeLayout;
