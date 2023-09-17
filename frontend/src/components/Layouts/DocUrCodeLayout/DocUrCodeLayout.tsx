@@ -24,7 +24,6 @@ const DocurCodeLayout: React.FC = () => {
     const getData = async () => {
       const data = await createExplainationOpenAi(
         inputCode,
-        apiKey,
         explanationLevel // Pass explanation level to the function
       );
       setDocs(data);
