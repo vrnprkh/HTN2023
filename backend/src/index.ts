@@ -16,7 +16,6 @@ const openai = new OpenAI({
 });
 
 const PORT = parseInt(process.env.PORT ?? "5000");
-const HOST = process.env.HOST ?? "localhost";
 
 // app.use('', (req: Request, res: Response, next: NextFunction) => {
 //   if (req.headers.authorization) {
@@ -49,6 +48,6 @@ app.post('/openai', bodyParser.json(), async (req: Request, res: Response) => {
   res.send(data);
 });
 
-app.listen(PORT, HOST, () => {
-  console.log(`Starting OPENAI proxy at ${HOST}:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Starting OPENAI proxy at PORT ${PORT}`);
 })
