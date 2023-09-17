@@ -13,7 +13,7 @@
   background-color: #f2f2f2;
   border: 1px solid #ccc;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 7px;
   text-align: left;
 }
 
@@ -24,21 +24,25 @@
   flex-grow: 1;
   padding: 5px;
   font-size: 16px;
-  text-align: left; /* Center text */
+  text-align: left; 
 }
 
 .submit-button {
-  background-color: #007bff;
+  background-color: #474456;
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 20px;
   cursor: pointer;
   font-size: 16px;
 }
 
+.parent{
+    display: flex;
+    justify-content: center;
+}
 .submit-button:hover {
-  background-color: #0056b3;
+  background-color: #615e6f;
 }
 
 .bottom {
