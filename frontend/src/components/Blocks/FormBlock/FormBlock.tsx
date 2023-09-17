@@ -41,9 +41,9 @@ const FormBlock: React.FC<FormBlockProps> = (props: FormBlockProps) => {
               value={explanationLevel}
               className="input-field"
             >
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
+              <option value="low">Detailed</option>
+              <option value="medium">Normal</option>
+              <option value="high">Overview</option>
             </select>
           </div>
           <button className="submit-button" onClick={onSubmit}>
