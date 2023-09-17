@@ -2,10 +2,10 @@
   "name": "docurcode_backend",
   "version": "1.0.0",
   "description": "backend proxy server for docurcode",
-  "main": "src/index.ts",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "ts-node-esm ./src/index.ts"
+    "start": "node ./src/index.js"
   },
   "author": "",
   "license": "ISC",

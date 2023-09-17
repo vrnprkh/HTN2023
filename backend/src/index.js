@@ -1,12 +1,11 @@
-import express, { Express, NextFunction, Request, Response } from 'express';
+import express from 'express';
 import OpenAI from 'openai';
 import morgan from 'morgan';
 import 'dotenv/config';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { OpenAIPayload } from './types';
 
-const app: Express = express();
+const app = express();
 app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.json());
@@ -25,12 +24,12 @@ const PORT = parseInt(process.env.PORT ?? "5000");
 //   }
 // });
 
-app.get('/mock', (req: Request, res: Response) => {
+app.get('/mock', (req, res) => {
   res.send("This is a test response for DocUrCode.");
 });
 
-app.post('/openai', bodyParser.json(), async (req: Request, res: Response) => {
-  const payload = req.body as OpenAIPayload;
+app.post('/openai', bodyParser.json(), async (req, res) => {
+  const payload = req.body;
   const data = await openai.chat.completions.create({
     messages: [
       {
