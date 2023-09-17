@@ -13,8 +13,9 @@ export async function createExplainationOpenAi(userInput: string, promptType: st
   else if (prompt === "low") {
       prompt = lowPrompt
   }
+  const url = `http://${process.env.REACT_APP_BACKEND_HOST}:${process.env.REACT_APP_BACKEND_PORT}/openai`;
   return axios.post(
-    "http://localhost:4000/openai",
+    url,
     {
       prompt,
       code: parseArrayToText(parseCode(userInput)),

@@ -46,7 +46,6 @@ app.post('/openai', bodyParser.json(), async (req: Request, res: Response) => {
     model: "gpt-3.5-turbo-16k",
     temperature: 0,
   });
-  console.log(JSON.parse(JSON.stringify(data)));
   res.send(data);
 });
 
