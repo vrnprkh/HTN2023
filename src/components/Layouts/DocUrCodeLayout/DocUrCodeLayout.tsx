@@ -14,11 +14,12 @@ const DocurCodeLayout: React.FC = () => {
   const [selectedLines, setSelectedLines] = useState<string>();
   const [apiKey, setApiKey] = useState<string>();
   const [inputCode, setInputCode] = useState<string>();
-  const [language, setLanguage] = useState<string>();
+  // const [language, setLanguage] = useState<string>();
   const [showForm, setShowForm] = useState<boolean>(true);
   const [docs, setDocs] = useState<Doc[]>();
   const onSubmitForm = () => {
-    if (!language || !inputCode || !apiKey) {
+    if (!inputCode || !apiKey) {
+      // add !language || for syntax highlighting
       return;
     }
     const getData = async () => {
@@ -42,7 +43,7 @@ const DocurCodeLayout: React.FC = () => {
       {showForm ? <FormBlock
         setInputCode={setInputCode}
         setApiKey={setApiKey}
-        setSelectedLanguage={setLanguage}
+        // setSelectedLanguage={setLanguage}
         onSubmit={onSubmitForm}
       /> :
       <PanelGroup direction="horizontal" className="docUrCodeLayout">

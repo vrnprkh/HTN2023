@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Center vertically */
   gap: 10px;
-  margin: 20px;
+  text-align: left;
 }
 
 .input-container {
@@ -13,6 +14,7 @@
   border: 1px solid #ccc;
   padding: 5px;
   border-radius: 5px;
+  text-align: left;
 }
 
 .input-field {
@@ -22,6 +24,7 @@
   flex-grow: 1;
   padding: 5px;
   font-size: 16px;
+  text-align: left; /* Center text */
 }
 
 .submit-button {
@@ -36,4 +39,8 @@
 
 .submit-button:hover {
   background-color: #0056b3;
+}
+
+.bottom {
+  display: flex;
 }
