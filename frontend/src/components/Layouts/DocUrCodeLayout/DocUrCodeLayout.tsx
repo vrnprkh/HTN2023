@@ -11,14 +11,13 @@ import { Doc } from "../../../utils/parsers/parser";
 
 const DocurCodeLayout: React.FC = () => {
   const [selectedLines, setSelectedLines] = useState<string>();
-  const [apiKey, setApiKey] = useState<string>();
   const [inputCode, setInputCode] = useState<string>();
   const [showForm, setShowForm] = useState<boolean>(true);
   const [docs, setDocs] = useState<Doc[]>();
   const [explanationLevel, setExplanationLevel] = useState<string>("low"); // State for explanation level
 
   const onSubmitForm = () => {
-    if (!inputCode || !apiKey || !explanationLevel) {
+    if (!inputCode || !explanationLevel) {
       return;
     }
     const getData = async () => {
@@ -45,7 +44,6 @@ const DocurCodeLayout: React.FC = () => {
       {showForm ? (
         <FormBlock
           setInputCode={setInputCode}
-          setApiKey={setApiKey}
           setExplainationLevel={setExplanationLevel} // Pass the new prop
           onSubmit={onSubmitForm}
         />

@@ -4,13 +4,12 @@ import banner from "./image2.png";
 
 export type FormBlockProps = {
   setInputCode: (code: string) => void;
-  setApiKey: (key: string) => void;
   setExplainationLevel: (level: string) => void; // New prop
   onSubmit: () => void;
 };
 
 const FormBlock: React.FC<FormBlockProps> = (props: FormBlockProps) => {
-  const { setInputCode, setApiKey, setExplainationLevel, onSubmit } = props;
+  const { setInputCode, setExplainationLevel, onSubmit } = props;
   const [explanationLevel, setExplanationLevel] = useState<string>("low"); // State for dropdown value
 
   return (
@@ -32,14 +31,6 @@ const FormBlock: React.FC<FormBlockProps> = (props: FormBlockProps) => {
           />
         </div>
         <div className="bottom">
-          <div className="input-container">
-            <input
-              type="password"
-              placeholder="Enter API key"
-              onChange={(e) => setApiKey(e.target.value)}
-              className="input-field"
-            />
-          </div>
           <div className="input-container">
             {/* Dropdown menu */}
             <select
